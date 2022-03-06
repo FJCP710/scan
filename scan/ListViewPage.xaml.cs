@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace scan
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListView : ContentPage
+    public partial class ListViewPage : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
 
-        public ListView()
+        public ListViewPage()
         {
             InitializeComponent();
 

@@ -6,7 +6,8 @@
             android:TabbedPage.ToolbarPlacement="Bottom"
             >
   <!--Pages can be added as references or inline-->
-    <scan:Form Title="Formulario"></scan:Form>
-    <scan:ListView Title="Lista" IconImageSource="list.png"></scan:ListView>
+    <scan:ListViewPage Title="Lista" IconImageSource="list.png"></scan:ListViewPage>
     <scan:MainPage Title="Scan" IconImageSource="scan.png"></scan:MainPage>
+    <scan:Form Title="Formulario"></scan:Form>
+    
 </TabbedPage>
