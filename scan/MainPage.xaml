@@ -8,7 +8,7 @@
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Bienvenido a MedicineQR" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Label Text="SCAN" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <Label x:Name="scanResultText"/>
         <zxing:ZXingScannerView IsScanning="True" OnScanResult="ZXingScannerView_OnScanResult">
