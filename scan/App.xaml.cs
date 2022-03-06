@@ -10,7 +10,7 @@ namespace scan
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new TabbedBottom();
         }
 
         protected override void OnStart()
