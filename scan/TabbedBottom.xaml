@@ -4,6 +4,7 @@
             x:Class="scan.TabbedBottom"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
             >
   <!--Pages can be added as references or inline-->
     <scan:ListViewPage Title="Lista" IconImageSource="list.png"></scan:ListViewPage>
