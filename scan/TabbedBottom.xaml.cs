@@ -15,6 +15,7 @@ namespace scan
         public TabbedBottom()
         {
             InitializeComponent();
+
         }
     }
 }
