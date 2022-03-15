@@ -3,10 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="scan.Form">
     <ContentPage.Content>
+        
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Recuerde sus medicinas"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand" 
+                TextColor="AntiqueWhite"
+                FontSize="Large"/>
+            
+            <Entry Placeholder="Nombre"/>
+            <Entry Placeholder="Horas"/>
+            <DatePicker MinimumDate="01/01/2022"/>
+
+            <Button Text="Recuérdame"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
