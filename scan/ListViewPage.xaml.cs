@@ -28,6 +28,7 @@ namespace scan
             };
 
             MyListView.ItemsSource = Items;
+           
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
