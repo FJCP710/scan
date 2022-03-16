@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace scan.Services
 {
     public class MedicinasDB
     {
+        [PrimaryKey]
         public string id { get;}
         public string nombre { get;}
         public string prospecto { get;}
