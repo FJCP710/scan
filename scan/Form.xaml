@@ -11,13 +11,14 @@
                 TextColor="AntiqueWhite"
                 FontSize="Large"/>
             
-            <Entry Placeholder="Nombre"/>
-            <Entry Placeholder="Horas"/>
+            <Entry Placeholder="Nombre" x:Name="nameEntry"/>
+            <Entry Placeholder="Horas" x:Name="hourEntry"/>
             <DatePicker MinimumDate="01/01/2022"/>
 
             <Button Text="Recuérdame"
                     HorizontalOptions="Center"
-                    VerticalOptions="End"/>
+                    VerticalOptions="End"
+                    Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

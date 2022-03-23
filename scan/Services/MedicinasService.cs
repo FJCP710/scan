@@ -8,36 +8,38 @@ using Xamarin.Essentials;
 
 namespace scan.Services
 {
-    public static class MedicinasService
+    public class MedicinasServices
     {
-        static SQLiteAsyncConnection db;
-        static MedicinasDB medicinas;
+        static SQLiteAsyncConnection conn;
+
+        public MedicinasServices()
+        {
+
+        }
+        public const string DatabaseFilename = "medicinas.db";
+        public const SQLiteOpenFlags flags = SQLiteOpenFlags.ReadWrite;
+        /*
         static async Task Init()
         {
-            if (db == null) return;
-
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
-
-            db = new SQLiteAsyncConnection(databasePath);
-
+            if (conn == null) return;
             
-        }
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "medicinas.db");
+            //Path.Combine(FileSystem.AppDataDirectory, "medicinas.db");
+            //ApplicationData.Current.LocalFolder.Path + "/medicinas.db";
 
-        public static async Task AddMedicina(MedicinasDB medicinas)
-        {
-            await Init();
+            conn = new SQLiteAsyncConnection(databasePath);
             
-            
-        }
 
-        public static async Task CreateNotification(MedicinasDB medicinas)
-        {
-            await Init();
         }
-
-        public static async Task CreateReminder(MedicinasDB medicinas)
+        */
+        public static string DatabasePath
         {
-            await Init();
+            get
+            {
+                var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                return Path.Combine(basePath, DatabaseFilename);
+            }
         }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using scan.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,12 +13,13 @@ namespace scan
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListViewPage : ContentPage
     {
+        //readonly MedicinasService medicinasService;
         public ObservableCollection<string> Items { get; set; }
 
         public ListViewPage()
         {
             InitializeComponent();
-
+            /*
             Items = new ObservableCollection<string>
             {
                 "Item 1",
@@ -28,7 +30,7 @@ namespace scan
             };
 
             MyListView.ItemsSource = Items;
-           
+            */
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -40,6 +42,17 @@ namespace scan
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        protected override async void OnAppearing()
+        {
+            
+            try
+            {
+                base.OnAppearing();
+                MyListView.ItemsSource = await MainPage.Mydatabase.ReadMedicine();
+            }
+            catch { }
         }
     }
 }

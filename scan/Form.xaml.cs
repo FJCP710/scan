@@ -16,5 +16,28 @@ namespace scan
         {
             InitializeComponent();
         }
+
+        async void Button_Clicked(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(nameEntry.Text) || string.IsNullOrWhiteSpace(hourEntry.Text))
+            {
+                await DisplayAlert("Inválido", "No ha rellenado todos los campos", "Aceptar");
+            }
+            else
+            {
+                createNotification();
+                createReminder();
+            }
+        }
+
+        private void createReminder()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void createNotification()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -28,5 +28,9 @@ namespace scan.Services
             this.fecCaduc = fecCaduc;
             this.horas = horas;
         }
+
+        public MedicinasDB()
+        {
+        }
     }
 }
