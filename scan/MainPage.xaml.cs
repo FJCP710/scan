@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using System.IO;
 using scan.Services;
+using System.Reflection;
+using scan.Data;
+using System.Collections.ObjectModel;
 
 namespace scan
 {
     public partial class MainPage : ContentPage
     {
         public string id;
-        private static SQLiteHelper db;
-
+        public ObservableCollection<MedicinasDB> Medicinas { get; set; } = 
+            new ObservableCollection<MedicinasDB>();
+        /*
         public static SQLiteHelper Mydatabase
         {
             get
@@ -27,10 +25,29 @@ namespace scan
                 return db;
             }
         }
-
+        */
         public MainPage()
         {
             InitializeComponent();
+
+            // TODO Only do this when app first runs
+            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
+            using (Stream stream =
+                assembly.GetManifestResourceStream("scan.medicinas.db"))
+            {
+                using(MemoryStream memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+
+                    File.WriteAllBytes(MedicinaRepository.DbPath, memoryStream.ToArray());
+                }
+            }
+            MedicinaRepository repository = new MedicinaRepository();
+            foreach(var medicina in repository.GetName())
+            {
+                Medicinas.Add(medicina);
+            }
+            BindingContext = this;
             
         }
 

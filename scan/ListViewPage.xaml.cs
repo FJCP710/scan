@@ -1,4 +1,5 @@
-﻿using scan.Services;
+﻿using scan.Data;
+using scan.Services;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -14,11 +15,19 @@ namespace scan
     public partial class ListViewPage : ContentPage
     {
         //readonly MedicinasService medicinasService;
-        public ObservableCollection<string> Items { get; set; }
-
+        public ObservableCollection<MedicinasDB> medicinas { get; set; }
+        MedicinaRepository medicinaRepository;
+        public ObservableCollection<string> medicinasList;
         public ListViewPage()
         {
             InitializeComponent();
+            medicinasList.Add(medicinaRepository.n)
+            /*
+            foreach (string nombres in medicinaRepository.GetName())
+            {
+                medicinasList.Add(nombres);
+            }
+            */
             /*
             Items = new ObservableCollection<string>
             {
@@ -43,16 +52,17 @@ namespace scan
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
-
+        /*
         protected override async void OnAppearing()
         {
             
             try
             {
                 base.OnAppearing();
-                MyListView.ItemsSource = await MainPage.Mydatabase.ReadMedicine();
+               // MyListView.ItemsSource = await MainPage.Mydatabase.ReadMedicine();
             }
             catch { }
         }
+        */
     }
 }

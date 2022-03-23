@@ -5,14 +5,14 @@
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration;assembly=Xamarin.Forms.Core"
              >
   <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding medicinas}"
             ItemTapped="Handle_ItemTapped"
             CachingStrategy="RecycleElement">
     <!--Built in Cells-->
         
     <ListView.ItemTemplate>
         <DataTemplate>
-            <TextCell Text="{Binding .}" />
+            <TextCell Text="{Binding nombre}" />
         </DataTemplate>
     </ListView.ItemTemplate>
     
