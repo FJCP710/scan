@@ -12,7 +12,9 @@ namespace scan.Data
     {
         MainPage mainPage;
         public ObservableCollection<string> names { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> urls { get; set; } = new ObservableCollection<string>();
         private readonly SQLiteConnection _database;
+        string nombre;
 
         public static string DbPath { get; } =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "medicinas.db");
@@ -30,13 +32,11 @@ namespace scan.Data
 
         public ObservableCollection<string> GetName()
         {
-            string nombre = _database.Query<MedicinasDB>("SELECT nombre FROM MEDICINAS WHERE id = "+mainPage.id).ToString();
+            nombre = _database.Query<MedicinasDB>("SELECT nombre FROM medicinas WHERE id = " + mainPage.id).ToString();
             
             names.Add(nombre);
 
             return names;
-        }
-
-        
+        }        
     }
 }
