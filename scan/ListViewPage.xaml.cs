@@ -15,31 +15,27 @@ namespace scan
     public partial class ListViewPage : ContentPage
     {
         //readonly MedicinasService medicinasService;
-        public ObservableCollection<MedicinasDB> medicinas { get; set; }
-        MedicinaRepository medicinaRepository;
+       // public ObservableCollection<MedicinasDB> medicinas { get; set; }
+        MedicinaRepository medicinaRepository = new MedicinaRepository();
         public ObservableCollection<string> medicinasList;
+        public ObservableCollection<string> Items;
         public ListViewPage()
         {
             InitializeComponent();
-            medicinasList.Add(medicinaRepository.n)
-            /*
-            foreach (string nombres in medicinaRepository.GetName())
-            {
-                medicinasList.Add(nombres);
-            }
-            */
             /*
             Items = new ObservableCollection<string>
             {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
+                
             };
-
-            MyListView.ItemsSource = Items;
             */
+
+            for(int i = 0; i < medicinaRepository.names.Count(); i++)
+            {
+                Items.Add(medicinaRepository.names[i]);
+            }
+            
+            MyListView.ItemsSource =  Items;
+            
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

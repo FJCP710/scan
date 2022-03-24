@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 
@@ -9,8 +10,9 @@ namespace scan.Data
 {
     public class MedicinaRepository
     {
+        MainPage mainPage;
+        public ObservableCollection<string> names { get; set; } = new ObservableCollection<string>();
         private readonly SQLiteConnection _database;
-        MainPage _mainPage;
 
         public static string DbPath { get; } =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "medicinas.db");
@@ -21,14 +23,20 @@ namespace scan.Data
             _database.CreateTable<MedicinasDB>();
         }
 
-        public string GetName()
+        public List<MedicinasDB> List()
         {
-            var name = _database.Query<MedicinasDB>("SELECT nombre FROM medicinas WHERE id= " + _mainPage.id);
-            string nombre = name.ToString();
-            return nombre;
-            //_database.Table<MedicinasDB>().ToList(); String<MedicinasDB>
+            return _database.Table<MedicinasDB>().ToList();
         }
 
+        public ObservableCollection<string> GetName()
+        {
+            string nombre = _database.Query<MedicinasDB>("SELECT nombre FROM MEDICINAS WHERE id = "+mainPage.id).ToString();
+            
+            names.Add(nombre);
 
+            return names;
+        }
+
+        
     }
 }

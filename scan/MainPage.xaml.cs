@@ -43,7 +43,7 @@ namespace scan
                 }
             }
             MedicinaRepository repository = new MedicinaRepository();
-            foreach(var medicina in repository.GetName())
+            foreach(var medicina in repository.List())
             {
                 Medicinas.Add(medicina);
             }
