@@ -11,8 +11,9 @@
                 TextColor="AntiqueWhite"
                 FontSize="Large"/>
             
-            <Entry Placeholder="Nombre" x:Name="nameEntry"/>
-            <Entry Placeholder="Horas" x:Name="hourEntry"/>
+            <Entry Placeholder="Nombre" x:Name="nameEntry" IsReadOnly="true"/>
+            <Entry Placeholder="Horas" x:Name="hourEntry" ClearButtonVisibility="WhileEditing" Keyboard="Numeric"/>
+            <Entry Placeholder="¿Por día?" x:Name="dayEntry" ClearButtonVisibility="WhileEditing" Keyboard="Numeric"/>
             <DatePicker MinimumDate="01/01/2022"/>
 
             <Button Text="Recuérdame"

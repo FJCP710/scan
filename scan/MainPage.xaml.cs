@@ -1,35 +1,21 @@
 ﻿using Xamarin.Forms;
 using System.IO;
-using scan.Services;
+using scan.Models;
 using System.Reflection;
-using scan.Data;
 using System.Collections.ObjectModel;
 
 namespace scan
 {
     public partial class MainPage : ContentPage
     {
-        public string id;
-        public ObservableCollection<MedicinasDB> Medicinas { get; set; } = 
-            new ObservableCollection<MedicinasDB>();
-        /*
-        public static SQLiteHelper Mydatabase
-        {
-            get
-            {
-                if (db == null)
-                {
-                    db = new SQLiteHelper(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "medicinas.db"));
-
-                }
-                return db;
-            }
-        }
-        */
+        public string idMedicina;
+        public ObservableCollection<MedicinasModel> Medicinas { get; set; } = 
+            new ObservableCollection<MedicinasModel>();
+        public ObservableCollection<string> nombres { get; set; }
         public MainPage()
         {
             InitializeComponent();
-
+            /*
             // TODO Only do this when app first runs
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
             using (Stream stream =
@@ -38,8 +24,14 @@ namespace scan
                 using(MemoryStream memoryStream = new MemoryStream())
                 {
                     stream.CopyTo(memoryStream);
-
-                    File.WriteAllBytes(MedicinaRepository.DbPath, memoryStream.ToArray());
+                    try
+                    {
+                        File.WriteAllBytes(MedicinaRepository.DbPath, memoryStream.ToArray());
+                    } catch {
+                        new IOException();
+                    }
+                   
+                    // Aquí va un try catch
                 }
             }
             MedicinaRepository repository = new MedicinaRepository();
@@ -48,15 +40,25 @@ namespace scan
                 Medicinas.Add(medicina);
             }
             BindingContext = this;
-            
+            */
         }
 
-        public void ZXingScannerView_OnScanResult(ZXing.Result result)
+        private void ZXingScannerView_OnScanResult(ZXing.Result result)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
-                id = result.Text + " (type: " + result.BarcodeFormat.ToString() + ")";
+                scanResultText.Text = "Código: "+result.Text;
             });
+            idMedicina = scanResultText.ToString();
+        }
+        public ObservableCollection<string> ListaNombres()
+        {
+            while (scanResultText.Text != null)
+            {
+                nombres.Add(idMedicina);
+            }
+            return nombres;
         }
     }
+    
 }

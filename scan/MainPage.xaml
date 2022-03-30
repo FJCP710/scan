@@ -10,8 +10,11 @@
         </Frame>
         <Label x:Name="scanResultText"/>
         <zxing:ZXingScannerView IsScanning="True" OnScanResult="ZXingScannerView_OnScanResult">
-        
+         
         </zxing:ZXingScannerView>
+
+        <Label x:Name="id" />
+
     </StackLayout>
 
 </ContentPage>

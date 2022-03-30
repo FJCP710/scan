@@ -1,30 +1,27 @@
-﻿using scan.Data;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 using System;
 using SQLite;
-using scan.Services;
 
 namespace scan
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListViewPage : ContentPage
     {
-        MedicinaRepository medicinaRepository = new MedicinaRepository();
         public ObservableCollection<string> Items;
-        private readonly SQLiteConnection _database;
 
+        
         public ListViewPage()
         {
             InitializeComponent();
-
-            for(int i = 0; i < medicinaRepository.names.Count(); i++)
+            Items = new ObservableCollection<string>()
             {
-                Items.Add(medicinaRepository.names[i]);
-            }
+                "Item 1",
+                "Item 2"
+            };
             
             MyListView.ItemsSource =  Items;
             
@@ -34,17 +31,26 @@ namespace scan
         {
             if (e.Item == null)
                 return;
-
-            bool answer = await DisplayAlert("Pregunta", "¿Quieres salir y ver el prospecto", "Sí", "No");
-            if(answer == true)
-            {
-                string nombre = e.Item.ToString();
-                string url = _database.Query<MedicinasDB>("SELECT url FROM medicinas WHERE nombre = "+nombre).ToString();
-                await Browser.OpenAsync(url, BrowserLaunchMode.SystemPreferred);
-            }
-
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        protected override async void OnAppearing()
+        {
+            try
+            {
+                base.OnAppearing();
+                MyListView.ItemsSource = await App.MyDatabase.ReadMedicinas();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+        private void listViewPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
